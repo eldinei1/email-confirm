@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Redirecionando...</title>
+  <script>
+    // Função para obter o valor de um parâmetro na URL
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Obtém token e email da query string
+    const token = getQueryParam('token');
+    const email = getQueryParam('email');
+
+    if (token && email) {
+      // Monta o deep link para o app
+      const deepLink = `minhacidadeapp://confirm-email?token=${encodeURIComponent(token)}&email=${encodeURIComponent(email)}`;
+
+      // Redireciona para o deep link do app
+      window.location.href = deepLink;
+    } else {
+      // Se faltar algum parâmetro, mostra mensagem
+      document.write('Link inválido ou parâmetros faltando.');
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecionando para o app...</p>
+</body>
+</html>
